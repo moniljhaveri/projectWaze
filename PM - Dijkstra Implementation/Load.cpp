@@ -1,0 +1,46 @@
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include "Node.h"
+#include "Road.h"
+
+using namespace std;
+
+vector<Node> loadNodes(string filename)
+{
+ifstream infile(filename);
+string ID;
+float lat;
+float longit;
+vector<Node> nodevec;
+while(infile >> ID){
+	infile >> lat;
+	infile >> longit;
+	Node nodename(ID,lat,longit);
+	nodevec.push_back(nodename);
+}
+return nodevec;
+}
+
+void loadRoads(string filename, vector<Node> &nodevec)
+{
+ifstream infile(filename);
+string ID;
+string st;
+string end;
+float length; 
+while(infile >> ID)
+{
+	infile >> st;
+	infile >> end;
+	infile >> length;
+
+	Road roadname(ID,st,end,length);
+	nodevec[stoi(st)].addRoad(roadname);
+	
+	Road oppositeDir(ID,end,st,length);
+	nodevec[stoi(end)].addRoad(oppositeDir);
+
+}
+}
