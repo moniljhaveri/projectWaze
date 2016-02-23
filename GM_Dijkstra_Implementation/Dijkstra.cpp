@@ -18,7 +18,8 @@ void Dijkstra(vector<Node>* nodes, vector<Node*>* path, int start_node, int end_
 		q.sort();
 		currentNode = q.dequeue();
 		done[(*currentNode).getID()] = true;
-		
+		if(currentNode->getID() == end_node)
+			break;
 		vector<Node::linkedNode> linked = (*currentNode).getLinkedNodes();
 		for (vector<Node::linkedNode>::iterator it = linked.begin() ; it != linked.end(); ++it)
 		{
