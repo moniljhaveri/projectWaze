@@ -6,51 +6,54 @@
 #include "Dijkstra.h"
 #include "Road.h"
 
-void dijkstra(vector<Node*> &ptrvec, vector<Node> &nodevec, string begin, string end)
+#include <chrono> 
+using namespace std::chrono;
+
+void dijkstra(vector<Node*> &ptrvec, vector<Node> &nodevec, int begin, int end)
 {	
 	vector<Node*> visited;
 	vector<Road> roadvec;
-	nodevec[0].setDistance(0.0);
-	make_heap(ptrvec.begin(), ptrvec.end(), CompareNodePtrs());
+	nodevec[begin].setDistance(0.0);
+    make_heap(ptrvec.begin(), ptrvec.end(), CompareNodePtrs());
+		
 	while(ptrvec.size())
 	{
 		roadvec = ptrvec[0]->getRoads();
 		updateNodeDist(ptrvec, nodevec, roadvec); 
-		visited.push_back(ptrvec[0]);
-		pop_heap(ptrvec.begin(), ptrvec.end(), CompareNodePtrs());
-		ptrvec.pop_back();
+		ptrvec.erase(ptrvec.begin());
 		make_heap(ptrvec.begin(), ptrvec.end(), CompareNodePtrs());
-		if(ptrvec[0]->getNode() == end)
+		if((ptrvec[0]->getNode()) == end)
 			break;
 	}
-	vector<string> path = retrievePath(ptrvec, nodevec, begin, end);	
+
+    vector<int> path = retrievePath(ptrvec, nodevec, begin);
 }
 
-void updateNodeDist(vector<Node*> &ptrvec, vector<Node> &nodevec, vector<Road> roadvec)
+void updateNodeDist(vector<Node*> &ptrvec, vector<Node> &nodevec, vector<Road> &roadvec)
 {
 	float d;
 
 	for(int i = 0; i<roadvec.size(); i++)
 	{
-		string toNode = roadvec[i].getEnd();
+		int toNode = roadvec[i].getEnd();
 		d = ptrvec[0]->getDistance() + roadvec[i].getLength();
 				
-		if(d < nodevec[stoi(toNode)].getDistance())
+		if(d < nodevec[toNode].getDistance())
 		{	
-			nodevec[stoi(toNode)].setDistance(d);
-			nodevec[stoi(toNode)].setNodeFrom(roadvec[i].getStart());}
+			nodevec[toNode].setDistance(d);
+			nodevec[toNode].setNodeFrom(roadvec[i].getStart());}
 	}	
 }
 
-vector<string> retrievePath(vector<Node*> &ptrvec, vector<Node> &nodevec, string begin, string end)
+vector<int> retrievePath(vector<Node*> &ptrvec, vector<Node> &nodevec, int begin)
 {
-	vector<string> path;
+	vector<int> path;
 	path.push_back(ptrvec[0]->getNode());
-	string nodefrom = ptrvec[0]->getNodeFrom();
+	int nodefrom = ptrvec[0]->getNodeFrom();
 
 	path.push_back(nodefrom);
 	while(nodefrom != begin)
-	{	nodefrom = nodevec[stoi(nodefrom)].getNodeFrom();
+	{	nodefrom = nodevec[nodefrom].getNodeFrom();
 		path.push_back(nodefrom);
 	}
 	reverse(path.begin(),path.end());

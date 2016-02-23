@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Road::Road(string ID, string st, string en, float len)
+Road::Road(int ID, int st, int en, float len)
 {
 roadID = ID;
 start = st;
@@ -12,13 +12,13 @@ end = en;
 length = len;
 }
 
-string Road::getRoad() const
+int Road::getRoad() const
 {return roadID;}
 
-string Road::getStart() const
+int Road::getStart() const
 {return start;}
 
-string Road::getEnd() const
+int Road::getEnd() const
 {return end;}
 
 float Road::getLength() const

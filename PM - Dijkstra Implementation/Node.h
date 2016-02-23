@@ -10,21 +10,22 @@ using namespace std;
 class Node
 {
 	private:	
-	string nodeID;
+	int nodeID;
 	float lat;
 	float longit;
 	vector<Road> roads;
-	string nodefrom;
+	int nodefrom;
+	public:
 	float distance;	
 
 	public:
-	Node(string ID, float lat, float longit);
+	Node(int ID, float lat, float longit);
 	void setDistance(float);
 	float getDistance() const;
-	string getNodeFrom() const;
-	void setNodeFrom(string nodeID);
+	int getNodeFrom() const;
+	void setNodeFrom(int nodeID);
 	void setCoord(float lat, float longit);
-	string getNode() const;
+	int getNode() const;
 	float getLat() const;
 	float getLongit() const;
 	void addRoad(Road);
@@ -43,7 +44,7 @@ struct CompareNodes {
 
 struct CompareNodePtrs {
 	bool operator()(Node* a, Node* b) 
-	{ return (*a > *b); }
+	{ return (a->getDistance() > b->getDistance()); }
 };
 
 #endif // NODE_H_

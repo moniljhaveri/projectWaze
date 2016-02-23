@@ -7,9 +7,9 @@
 
 using namespace std; 
 
-void dijkstra(vector<Node*> &ptrvec, vector<Node> &nodevec, string begin, string end);
+void dijkstra(vector<Node*> &ptrvec, vector<Node> &nodevec, int begin, int end);
 
-void updateNodeDist(vector<Node*> &ptrvec, vector<Node> &nodevec, vector<Road> roadvec);
+void updateNodeDist(vector<Node*> &ptrvec, vector<Node> &nodevec, vector<Road> &roadvec);
 
-vector<string> retrievePath(vector<Node*> &visited, vector<Node> &nodevec, string begin, string end);
+vector<int> retrievePath(vector<Node*> &visited, vector<Node> &nodevec, int begin);
 #endif // DIJKSTRA_H_

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<Node> loadNodes(string filename);
+vector<Node> loadNodes(string nodefile);
 void loadRoads(string filename, vector<Node> &nodevec); 
 
 #endif // LOAD_H_

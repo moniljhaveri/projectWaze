@@ -7,10 +7,10 @@
 
 using namespace std;
 
-vector<Node> loadNodes(string filename)
+vector<Node> loadNodes(string nodefile)
 {
-ifstream infile(filename);
-string ID;
+ifstream infile(nodefile);
+int ID;
 float lat;
 float longit;
 vector<Node> nodevec;
@@ -26,9 +26,9 @@ return nodevec;
 void loadRoads(string filename, vector<Node> &nodevec)
 {
 ifstream infile(filename);
-string ID;
-string st;
-string end;
+int ID;
+int st;
+int end;
 float length; 
 while(infile >> ID)
 {
@@ -37,10 +37,10 @@ while(infile >> ID)
 	infile >> length;
 
 	Road roadname(ID,st,end,length);
-	nodevec[stoi(st)].addRoad(roadname);
+	nodevec[st].addRoad(roadname);
 	
 	Road oppositeDir(ID,end,st,length);
-	nodevec[stoi(end)].addRoad(oppositeDir);
+	nodevec[end].addRoad(oppositeDir);
 
 }
 }

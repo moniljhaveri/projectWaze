@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Node::Node(string ID, float lattitude, float longitude)
+Node::Node(int ID, float lattitude, float longitude)
 {
 nodeID = ID;
 lat = lattitude;
@@ -18,17 +18,17 @@ void Node::setDistance(float d)
 float Node::getDistance() const
 {return distance;}
 
-string Node::getNodeFrom() const
+int Node::getNodeFrom() const
 {return nodefrom;}
 
-void Node::setNodeFrom(string ID)
+void Node::setNodeFrom(int ID)
 {nodefrom = ID;}
 
 void Node::setCoord(float la, float lon)
 {lat = la;
 longit = lon;}
 
-string Node::getNode() const
+int Node::getNode() const
 {return nodeID;}
 
 float Node::getLat() const

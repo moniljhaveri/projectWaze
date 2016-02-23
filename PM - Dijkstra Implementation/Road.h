@@ -8,16 +8,16 @@ using namespace std;
 class Road
 {
 	private:
-	string roadID;
-	string start;
-	string end;
+	int roadID;
+	int start;
+	int end;
 	float length;
 	
 	public:
-	Road(string roadID, string st, string en, float len);
-	string getRoad() const;
-	string getStart() const;
-	string getEnd() const;
+	Road(int roadID, int st, int en, float len);
+	int getRoad() const;
+	int getStart() const;
+	int getEnd() const;
 	float getLength() const;
 
 };
