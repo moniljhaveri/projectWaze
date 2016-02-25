@@ -15,7 +15,8 @@ using namespace std::chrono;
 //	another section, this will fail.
 
 int main(int argc, char *argv[])
-{	high_resolution_clock::time_point t1 = high_resolution_clock::now();
+{	
+	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	vector<Node> nodes;
 	vector<Node*> path;
 	int num_nodes;
@@ -34,9 +35,9 @@ int main(int argc, char *argv[])
 	for (vector<Node*>::iterator it = path.begin() ; it != path.end(); ++it) 
 		cout << (*(*it)).getID() << endl;
 	
-high_resolution_clock::time_point t2 = high_resolution_clock::now();
-auto duration = duration_cast<microseconds>( t2 - t1 ).count();
-cout << duration << " Time" << endl;
+	high_resolution_clock::time_point t2 = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>( t2 - t1 ).count();
+	cout << "\nTotal Time: " << duration << endl;
 	
 	return 0;
 }
