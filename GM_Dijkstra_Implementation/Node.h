@@ -23,6 +23,7 @@ class Node
 		double getLat();
 		double getLon();
 		double getDistanceFromStart();
+		bool hasLinkedNodes();
 		Node *getCameFrom();
 		vector<Node::linkedNode> getLinkedNodes();
 		

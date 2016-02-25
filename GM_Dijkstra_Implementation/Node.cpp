@@ -62,6 +62,11 @@ double Node::getDistanceFromStart()
 	return this->distance_from_start;
 }
 
+bool Node::hasLinkedNodes()
+{
+	return ((this->linked_nodes.size() == 0) ? false : true);
+}
+
 Node *Node::getCameFrom()
 {
 	return this->came_from;

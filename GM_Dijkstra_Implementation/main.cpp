@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	//cin >> end_node;
 	
 	// run the algorithm
-	Dijkstra( &nodes, &path, start_node, end_node );
+	Dijkstra( &nodes, &path, &(nodes[start_node]), &(nodes[end_node]) );
 	
 	// print the results
 	for (vector<Node*>::iterator it = path.begin() ; it != path.end(); ++it) 
