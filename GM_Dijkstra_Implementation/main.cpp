@@ -10,10 +10,9 @@
 using namespace std;
 using namespace std::chrono;
 
-// KNOWN ISSUES:
-//	- If a node is not connected to any other node, this will cause problems
-//		- not sure if this is actually an issue in our file, but should fix anyway
-//	- If two nodes are next to each other, we should short circuit to get immediate result
+// KNOWN ISSUE:
+//	If the graph is partitioned, and start node is in one section and the end node is in
+//	another section, this will fail.
 
 int main(int argc, char *argv[])
 {	high_resolution_clock::time_point t1 = high_resolution_clock::now();
@@ -24,14 +23,9 @@ int main(int argc, char *argv[])
 	int end_node = stoi(argv[4]);
 	string node_file = argv[1];
 	string edge_file = argv[2];
+	
 	// set up the data structure
 	num_nodes = Load( &nodes, node_file, edge_file );
-
-	// get start and end nodes
-	//cout << "Enter a start node [0-" << nodes.size() << "]: ";
-	//cin >> start_node;
-	//cout << "Enter an end node [0-" << nodes.size() << "]: ";
-	//cin >> end_node;
 	
 	// run the algorithm
 	Dijkstra( &nodes, &path, &(nodes[start_node]), &(nodes[end_node]) );
