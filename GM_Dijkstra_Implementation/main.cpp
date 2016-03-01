@@ -4,6 +4,7 @@
 #include "Node.h"
 #include "Load.h"
 #include "Dijkstra.h"
+#include "Astar.h"
 #include "SmoothsortPriorityQueue.h"
 #include <chrono>
 
@@ -29,15 +30,17 @@ int main(int argc, char *argv[])
 	num_nodes = Load( &nodes, node_file, edge_file );
 	
 	// run the algorithm
-	Dijkstra( &nodes, &path, &(nodes[start_node]), &(nodes[end_node]) );
+	// Dijkstra( &nodes, &path, &(nodes[start_node]), &(nodes[end_node]) );
+	Astar( &nodes, &path, &(nodes[start_node]), &(nodes[end_node]), 10.0, false );
 	
 	// print the results
-	for (vector<Node*>::iterator it = path.begin() ; it != path.end(); ++it) 
+	for (vector<Node*>::iterator it = path.begin() ; it != path.end(); ++it)
 		cout << (*(*it)).getID() << endl;
-	
+		
+	cout << "\nNodes in path: " << path.size() << endl;
 	high_resolution_clock::time_point t2 = high_resolution_clock::now();
 	auto duration = duration_cast<microseconds>( t2 - t1 ).count();
-	cout << "\nTotal Time: " << duration << endl;
+	cout << "Total Time: " << duration << endl;
 	
 	return 0;
 }

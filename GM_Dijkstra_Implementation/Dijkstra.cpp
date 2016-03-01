@@ -23,23 +23,23 @@ void Dijkstra(vector<Node>* nodes, vector<Node*>* path, Node *start_node, Node *
 		if(currentNode == end_node)
 			break;
 		vector<Node::linkedNode> linked = (*currentNode).getLinkedNodes();
-		for (vector<Node::linkedNode>::iterator it = linked.begin() ; it != linked.end(); ++it)
+		for (vector<Node::linkedNode>::iterator it = linked.begin() ; it != linked.end() ; ++it)
 		{
 			if (done[(*((*it).node)).getID()]) continue;
 			if ((*currentNode).getDistanceFromStart() + (*it).distance < (*((*it).node)).getDistanceFromStart())
 			{
 				(*((*it).node)).setDistanceFromStart((*currentNode).getDistanceFromStart() + (*it).distance);
-				(*((*it).node)).setCameFrom(currentNode);
+				(*((*it).node)).setParent(currentNode);
 			}
 		}
 	}
 	
 	(*path).push_back( end_node );
-	Node* source_node = (*end_node).getCameFrom();
+	Node* source_node = (*end_node).getParent();
 	(*path).push_back( source_node );
 	while ( source_node != start_node )
 	{
-		source_node = (*source_node).getCameFrom();
+		source_node = (*source_node).getParent();
 		(*path).push_back( source_node );
 	}
 	
