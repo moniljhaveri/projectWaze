@@ -4,6 +4,9 @@
 #include "Node.h"
 #include "SmoothsortPriorityQueue.h"
 
+// h_weight is the amount of weight given to the heuristic (which is the direct 'as-the-crow-flies'
+// distance between the node and the end node.) If the h_weight is 0, this function returns the
+// same results as Dijkstra's
 void Astar(vector<Node>* nodes, vector<Node*>* path, Node *start_node, Node *end_node, float h_weight, bool debug)
 {
 	if (((*start_node).hasLinkedNodes() == 0) || ((*end_node).hasLinkedNodes() == 0)) return;
