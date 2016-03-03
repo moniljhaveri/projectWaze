@@ -1,0 +1,44 @@
+#include <string> 
+#include <string.h> 
+#include <stdio.h> 
+#include <iostream> 
+#include <fstream> 
+#include <vector> 
+#include "node.h"
+#include "road.h" 
+
+std::ifstream openNode(){
+	std::ifstream nodeFile; 
+	nodeFile.open("cal.cnode.txt");  
+	if (nodeFile.good()){ 
+		std::string testString; 
+		getline(nodeFile, testString); 
+	}
+	else std::cout << "Failed "<< std::endl;		
+	
+	return nodeFile; 
+} 
+
+std::ifstream openRoad(){
+	std::ifstream roadFile; 
+	roadFile.open("cal.cedge.txt");  
+	if (roadFile.good()){ 
+		std::string testString; 
+		getline(roadFile, testString); 
+	}
+	else std::cout << "Failed "<< std::endl;		
+	return roadFile;  
+} 
+
+Node makeNode(std::string nodeString){ 
+	int ID; 	
+	float latitude; 
+	float longitude; 		
+	std::string a, b, c; 
+	a = std::strtok(nodeString, ' '); 
+	b = std::strtok(nodeString, ' '); 
+	c = std::strtok(nodeString, ' '); 
+	std::cout << a << " " << b << " " << c << std::endl;		
+
+} 
+
