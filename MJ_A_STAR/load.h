@@ -6,7 +6,8 @@
 std::ifstream openNode(); 
 std::ifstream openRoad(); 
 Node makeNode(std::string nodeString); 
-std::vector<std::string> stringVector(std::ifstream& x, int choice); 
+Road makeRoad(std::string string);
+std::vector<std::string> stringVector(std::ifstream& x); 
 
 #endif
 

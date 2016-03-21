@@ -11,6 +11,9 @@ class Node
 	int NodeID; 
 	float latitude; 
 	float longitude; 
+	float h; 
+	float g; 
+	
 	std::vector<Road> roads; 
 	int Nodefrom; 
 	

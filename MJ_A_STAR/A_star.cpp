@@ -7,6 +7,7 @@
 #include "node.h"
 #include "road.h" 
 #include "load.h" 
+#include "A_star.h"
 
  
 float heuristics(Node a, Node b){ 
@@ -16,11 +17,13 @@ float heuristics(Node a, Node b){
 	float Blat = b.getLat(); 
 	float dx = std::abs(Blong - Along); 
 	float dy = std::abs(Blat - Alat); 	
-	return sqrt(dx*xd + dy*dy); 
+	return sqrt(dx*dx + dy*dy); 
 } 
 
-void A*(Node start, Node goal){ 
-	std::priority_queue<Node> first; 
+void A_star(std::vector<Node> start, std::vector<Node> goal){ 
+	std::priority_queue<Node> OpenList;  
+	std::vector<Node> closedList; 
+	start.setDistance = 0.0; 
 	
 } 
 
