@@ -9,7 +9,7 @@
 #include <chrono>
 
 using namespace std;
-using namespace std::chrono;
+//using namespace std::chrono;
 
 // KNOWN ISSUE:
 //	If the graph is partitioned, and start node is in one section and the end node is in
@@ -17,12 +17,12 @@ using namespace std::chrono;
 
 int main(int argc, char *argv[])
 {	
-	high_resolution_clock::time_point t1 = high_resolution_clock::now();
+	//high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	vector<Node> nodes;
 	vector<Node*> path;
 	int num_nodes;
-	int start_node = stoi(argv[3]);
-	int end_node = stoi(argv[4]);
+	//int start_node = stoi(argv[3]);
+	//int end_node = stoi(argv[4]);
 	string node_file = argv[1];
 	string edge_file = argv[2];
 	
@@ -38,9 +38,9 @@ int main(int argc, char *argv[])
 		cout << (*(*it)).getID() << endl;
 		
 	cout << "\nNodes in path: " << path.size() << endl;
-	high_resolution_clock::time_point t2 = high_resolution_clock::now();
-	auto duration = duration_cast<microseconds>( t2 - t1 ).count();
-	cout << "Total Time: " << duration << endl;
+	//high_resolution_clock::time_point t2 = high_resolution_clock::now();
+	//auto duration = duration_cast<microseconds>( t2 - t1 ).count();
+	//cout << "Total Time: " << duration << endl;
 	
 	return 0;
 }

@@ -1,8 +1,10 @@
+#include <jni.h>
 #include <vector>
 #include <limits>
 #include "Node.h"
 
 using namespace std;
+
 
 Node::Node(int ID, double lat, double lon)
 {
@@ -69,3 +71,8 @@ void Node::setGVal(double g_val)
 
 double Node::getGVal()
 { return this->g_val; }
+
+
+#ifdef __cplusplus
+}
+#endif

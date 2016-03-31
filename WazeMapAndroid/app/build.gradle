@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.example.patrick.wazemap"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+
+        ndk {
+            moduleName "NodeWrap" // Name of C++ module (i.e. libSeePlusPlus
+            moduleName "SmoothSortWrap"
+            moduleName "AstarWrap"
+            moduleName "DijkstraWrap"
+
+            cFlags "-std=c++11 -fexceptions" // Add provisions to allow C++11 functionality
+            stl "stlport_shared" // Which STL library to use: gnustl or stlport
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_6
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.google.android.gms:play-services:8.4.0'
+}
+
+
+// Location of where to store the jni wrapped files
+/*def coreWrapperDir = new File("${projectDir}/src/main/java/com/pkmurphy")
+
+task createCoreWrapperDir {
+    coreWrapperDir.mkdirs()
+}
+
+// For this to work, it's assumed SWIG is installed
+task runSwig(type:Exec, dependsOn: ['createCoreWrapperDir']) {
+
+    String osName = System.getProperty("os.name").toLowerCase();
+    if (osName.contains("osx")) {
+        workingDir '/src/main/jni'   // This implicitly starts from $(projectDir) evidently
+        commandLine 'cmd', '/c', 'swig'
+        args '-c++', '-java', '-package', 'com.example.patrick.wazemap', '-outdir', coreWrapperDir.absolutePath, 'Node.i'
+    }
+    else {
+        commandLine 'swig'
+        args '-c++', '-java', '-package', 'com.example.patrick.wazemap', '-outdir', coreWrapperDir.absolutePath, "${projectDir}/src/main/jni/Node.i"
+    }
+
+}*/
