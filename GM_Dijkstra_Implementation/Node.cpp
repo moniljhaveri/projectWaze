@@ -1,4 +1,3 @@
-#include <jni.h>
 #include <vector>
 #include <limits>
 #include "Node.h"
@@ -71,8 +70,3 @@ void Node::setGVal(double g_val)
 
 double Node::getGVal()
 { return this->g_val; }
-
-
-#ifdef __cplusplus
-}
-#endif
