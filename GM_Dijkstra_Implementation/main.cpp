@@ -21,8 +21,8 @@ int main(int argc, char *argv[])
 	vector<Node> nodes;
 	vector<Node*> path;
 	int num_nodes;
-	//int start_node = stoi(argv[3]);
-	//int end_node = stoi(argv[4]);
+	int start_node = stoi(argv[3]);
+	int end_node = stoi(argv[4]);
 	string node_file = argv[1];
 	string edge_file = argv[2];
 	
