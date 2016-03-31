@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WazeMap.iml" filepath="$PROJECT_DIR$/WazeMap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WazeMapAndroid.iml" filepath="$PROJECT_DIR$/WazeMapAndroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
