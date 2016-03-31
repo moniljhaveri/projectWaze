@@ -1,4 +1,3 @@
-#include <jni.h>
 #include <vector>
 #include <iostream>
 #include <cmath>
