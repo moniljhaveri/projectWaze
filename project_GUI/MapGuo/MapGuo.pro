@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2016-03-03T16:17:40
+# Project created by QtCreator 2016-03-24T23:45:15
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = example2
+TARGET = MapGuo
 TEMPLATE = app
 
 
@@ -18,6 +18,3 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui
-
-DISTFILES += \
-    QML_Example.qml

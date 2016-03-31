@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>map.qml</file>
+        <file>marker.png</file>
+        <file>mapMarker.qml</file>
+    </qresource>
+</RCC>
