@@ -5,8 +5,15 @@ SmoothsortPriorityQueue::SmoothsortPriorityQueue( vector<Node>* nodes )
 {
 	// initialize our class copy of the list
 	queue = new Node*[ (*nodes).size() ];
-	queue_size = (*nodes).size();
-	for ( int i=0 ; i<queue_size ; i++ ) queue[i] = &(*nodes)[i];
+	
+	int max_queue_size = (*nodes).size();
+	//queue_size = (*nodes).size();
+	queue_size = 0;
+	for ( int i=0; i<max_queue_size ; i++ ) 
+	{
+		if ( (*nodes)[i].isInGraph() )
+			queue[queue_size++] = &(*nodes)[i];
+	}
 	
 	// initialize the leonardo number
 	leonardo_numbers[0] = 1;

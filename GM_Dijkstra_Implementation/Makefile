@@ -1,6 +1,6 @@
 
-main: main.o Node.o Load.o Dijkstra.o Astar.o SmoothsortPriorityQueue.o
-	g++ -std=c++1y main.o Node.o Load.o Dijkstra.o Astar.o SmoothsortPriorityQueue.o -o main
+main: main.o Node.o Load.o Dijkstra.o Astar.o Yen.o SmoothsortPriorityQueue.o
+	g++ -std=c++1y main.o Node.o Load.o Dijkstra.o Astar.o Yen.o SmoothsortPriorityQueue.o -o main
 
 main.o: main.cpp Node.h SmoothsortPriorityQueue.h 
 	g++ -std=c++1y -c main.cpp
@@ -14,11 +14,14 @@ Load.o: Load.cpp Load.h
 SmoothsortPriorityQueue.o: SmoothsortPriorityQueue.cpp SmoothsortPriorityQueue.h Node.h
 	g++ -std=c++1y -c SmoothsortPriorityQueue.cpp
 	
-Dijkstra.o: Dijkstra.cpp Node.h SmoothsortPriorityQueue.h
+Dijkstra.o: Dijkstra.cpp Dijkstra.h Node.h SmoothsortPriorityQueue.h
 	g++ -std=c++1y -c Dijkstra.cpp
 	
-Astar.o: Astar.cpp Node.h SmoothsortPriorityQueue.h
+Astar.o: Astar.cpp Astar.h Node.h SmoothsortPriorityQueue.h
 	g++ -std=c++1y -c Astar.cpp
+	
+Yen.o: Yen.cpp Yen.h Node.h
+	g++ -std=c++1y -c Yen.cpp
 
 clean:
 	rm *.o main

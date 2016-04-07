@@ -14,7 +14,14 @@ class Node
     		Node *node;
     		double distance;
 		};
-		void addLinkedNode(int ID, Node *node, double distance);
+		void addLinkedNodeRaw(int ID, Node *node, double distance);
+		void addLinkedNode(Node::linkedNode node);
+		void removeLinkedNode(Node *node);
+		void restoreLinks();
+		void removeNode();
+		void addNode();
+		bool isInGraph();
+		double getDistanceTo(Node *node);
 		vector<Node::linkedNode> getLinkedNodes();
 		bool hasLinkedNodes();
 		void setID(int ID);
@@ -38,8 +45,16 @@ class Node
 		double g_val;
 		double h_val;
 		double distance_from_start;
+		bool in_graph;
 		Node *parent;
 		vector<Node::linkedNode> linked_nodes;
+		vector<Node::linkedNode> stashed_linked_nodes;
 };
+
+// This is a helper function that resets all of the nodes in the vector
+// with a distance of infinity and 'nullptr' parents. This function
+// should be run before running Dijkstra's (unless it's the first time
+// running Dijkstra's on the nodes.)
+void reset_nodes(vector<Node>* nodes);
 
 #endif

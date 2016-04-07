@@ -47,8 +47,8 @@ int Load(vector<Node>* nodes, string fpath_nodes, string fpath_edges)
 			int end_node    = (int)strtol( strtok(NULL, " ")   , &pEnd , 10);
 			double distance =      strtod( strtok(NULL, " ")   , &pEnd);
 			
-			(*nodes)[start_node].addLinkedNode( ID, &(*nodes)[end_node],   distance);
-			(*nodes)[end_node].addLinkedNode  ( ID, &(*nodes)[start_node], distance);
+			(*nodes)[start_node].addLinkedNodeRaw( ID, &(*nodes)[end_node],   distance);
+			(*nodes)[end_node].addLinkedNodeRaw  ( ID, &(*nodes)[start_node], distance);
 		}
 		file.close();	
 	}

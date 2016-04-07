@@ -25,7 +25,7 @@ void Dijkstra(vector<Node>* nodes, vector<Node*>* path, Node *start_node, Node *
 		vector<Node::linkedNode> linked = (*currentNode).getLinkedNodes();
 		for (vector<Node::linkedNode>::iterator it = linked.begin() ; it != linked.end() ; ++it)
 		{
-			if (done[(*((*it).node)).getID()]) continue;
+			if ( done[(*((*it).node)).getID()] || !(*((*it).node)).isInGraph() ) continue;
 			if ((*currentNode).getDistanceFromStart() + (*it).distance < (*((*it).node)).getDistanceFromStart())
 			{
 				(*((*it).node)).setDistanceFromStart((*currentNode).getDistanceFromStart() + (*it).distance);
@@ -34,6 +34,8 @@ void Dijkstra(vector<Node>* nodes, vector<Node*>* path, Node *start_node, Node *
 		}
 	}
 	
+	// reconstruct the path
+	if ( end_node->getParent() == NULL ) return;
 	(*path).push_back( end_node );
 	Node* source_node = (*end_node).getParent();
 	(*path).push_back( source_node );
@@ -42,6 +44,7 @@ void Dijkstra(vector<Node>* nodes, vector<Node*>* path, Node *start_node, Node *
 		source_node = (*source_node).getParent();
 		(*path).push_back( source_node );
 	}
+	reverse((*path).begin(),(*path).end());
 	
 	return;
 }
