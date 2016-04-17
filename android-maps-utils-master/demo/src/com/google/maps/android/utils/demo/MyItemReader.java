@@ -42,7 +42,9 @@ public class MyItemReader {
             JSONObject object = array.getJSONObject(i);
             double lat = object.getDouble("lat");
             double lng = object.getDouble("lng");
-            items.add(new MyItem(lat, lng));
+            int id = object.getInt("id");
+            String title = object.getString("title");
+            items.add(new MyItem(lat, lng, id, title));
         }
         return items;
     }

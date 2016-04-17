@@ -1,7 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:map="http://schemas.android.com/apk/res-auto"
           android:id="@+id/map"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:name="com.google.android.gms.maps.SupportMapFragment"/>
+          android:name="com.google.android.gms.maps.SupportMapFragment" />
+    <Button android:id="@+id/button0"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+
+        android:layout_width="104dp"
+        android:layout_height="50dp"
+        android:background="@drawable/my_button_selector"
+        android:shadowColor="#999999"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_alignParentBottom="true"
+        android:text="Set Start" />
+
+    <TextView
+        android:id="@+id/startText"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@drawable/textstyle"
+        android:shadowColor="#999999"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5" />
+    <Button android:id="@+id/button1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+
+        android:layout_width="104dp"
+        android:layout_height="50dp"
+        android:background="@drawable/my_button_selector"
+        android:shadowColor="#999999"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="104dip"
+        android:text="Set End" />
+    <TextView
+        android:id="@+id/endText"
+        android:layout_marginTop="25dip"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@drawable/textstyle"
+        android:shadowColor="#999999"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5" />
+
+    <Button android:id="@+id/button2"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+
+        android:layout_width="104dp"
+        android:layout_height="50dp"
+        android:background="@drawable/my_button_selector"
+        android:shadowColor="#999999"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="208dip"
+        android:text="Go!" />
+
+    <Button android:id="@+id/button3"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+
+        android:layout_width="104dp"
+        android:layout_height="50dp"
+        android:background="@drawable/my_button_selector"
+        android:shadowColor="#999999"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="312dip"
+        android:text="Clear" />
+
+    <ListView
+        android:id="@+id/dirListView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
