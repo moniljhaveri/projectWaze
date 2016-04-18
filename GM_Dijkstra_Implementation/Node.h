@@ -37,7 +37,7 @@ class Node
 		double getHVal();
 		void setGVal(double g_val);
 		double getGVal();
-		
+
 	private:
 		int ID;
 		double lat;
@@ -56,5 +56,6 @@ class Node
 // should be run before running Dijkstra's (unless it's the first time
 // running Dijkstra's on the nodes.)
 void reset_nodes(vector<Node>* nodes);
+void restore_all_links(vector<Node>* nodes);
 
 #endif

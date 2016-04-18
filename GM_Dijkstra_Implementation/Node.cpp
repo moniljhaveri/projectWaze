@@ -130,3 +130,11 @@ void reset_nodes(vector<Node>* nodes)
 		(*it).setParent( nullptr );
 	}
 }
+
+void restore_all_links(vector<Node>* nodes)
+{
+	for (vector<Node>::iterator it = (*nodes).begin() ; it != (*nodes).end(); ++it)
+	{
+		(*it).restoreLinks();
+	}
+}
