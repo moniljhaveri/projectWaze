@@ -18,6 +18,7 @@ package com.google.maps.android.utils.demo;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -64,8 +66,38 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
     int startID = -1;
     int endID = -1;
     int turnByTurn = 0;
-    String[] dirString = {"test1", "test2","test2","test2","test2","test2","test2","test2","test2","test2"};
+    private ProgressBar bar;
 
+    public ProgressBar getProgressBar(){
+        return bar;
+    }
+
+    public void showProgressBar(){
+        bar.setVisibility(View.VISIBLE);
+    }
+    public void hideProgressBar(){
+        bar.setVisibility(View.INVISIBLE);
+    }
+
+    public NodeVec getNodeVector(){
+        return nodeVector;
+    }
+
+    public PathVec getPathVector(){
+        return pathVector;
+    }
+
+    public void setPathVector(PathVec path){
+        pathVector = path;
+    }
+
+    public int getStartID(){
+        return startID;
+    }
+
+    public int getEndID(){
+        return endID;
+    }
 
     protected void LoadNodes(){
 
@@ -146,11 +178,8 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
         endText.setText(" End: ");
         final Button goButton = (Button) findViewById(R.id.button2);
         Button clearButton = (Button) findViewById(R.id.button3);
-        /*
-        ListAdapter directionsAdapeter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,dirString);
-        ListView dirListView = (ListView) findViewById(R.id.dirListView);
-        dirListView.setAdapter(directionsAdapeter);
-        */
+        bar = (ProgressBar) this.findViewById(R.id.progressBar);
+
 
         getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(nodeVector.get(0).getLat(), nodeVector.get(0).getLon()), 10));
 
@@ -268,8 +297,10 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
             @Override
             public void onClick(View v) {
                 if (endID > -1 && startID > -1 && turnByTurn == 0) {
-                    DijkstraWrap.Dijkstra(nodeVector, pathVector, nodeVector.get(startID), nodeVector.get(endID));
-                    getMap().moveCamera(CameraUpdateFactory.newLatLng(getMap().getCameraPosition().target));
+                    //setTitle("Loading...");
+                    new ProgressTask().execute();
+                   // DijkstraWrap.Dijkstra(nodeVector, pathVector, nodeVector.get(startID), nodeVector.get(endID));
+                   // getMap().moveCamera(CameraUpdateFactory.newLatLng(getMap().getCameraPosition().target));
                     goButton.setText("Turn By Turn");
                     turnByTurn = 1;
                 }
@@ -322,4 +353,28 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
         });
 
     }
+
+    private class ProgressTask extends AsyncTask<Void,Void,Void> {
+        @Override
+        protected void onPreExecute(){
+            bar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            DijkstraWrap.Dijkstra(nodeVector, pathVector, nodeVector.get(startID), nodeVector.get(endID));
+           // getMap().moveCamera(CameraUpdateFactory.newLatLng(getMap().getCameraPosition().target));
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            bar.setVisibility(View.GONE);
+            getMap().moveCamera(CameraUpdateFactory.newLatLng(getMap().getCameraPosition().target));
+
+        }
+    }
 }
+
+
