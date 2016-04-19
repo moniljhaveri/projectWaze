@@ -31,13 +31,13 @@ class Node
 		double getLon();
 		void setDistanceFromStart(double distance=0);
 		double getDistanceFromStart();
-		void setParent(Node *node= nullptr);
+		void setParent(Node *node=nullptr);
 		Node *getParent();
 		void setHVal(double h_val=0);
 		double getHVal();
 		void setGVal(double g_val=0);
 		double getGVal();
-		
+
 	private:
 		int ID;
 		double lat;
@@ -56,5 +56,6 @@ class Node
 // should be run before running Dijkstra's (unless it's the first time
 // running Dijkstra's on the nodes.)
 void reset_nodes(vector<Node>* nodes);
+void restore_all_links(vector<Node>* nodes);
 
 #endif

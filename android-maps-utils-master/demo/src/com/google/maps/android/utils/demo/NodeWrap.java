@@ -13,4 +13,8 @@ public class NodeWrap {
     NodeWrapJNI.reset_nodes(NodeVec.getCPtr(nodes), nodes);
   }
 
+  public static void restore_all_links(NodeVec nodes) {
+    NodeWrapJNI.restore_all_links(NodeVec.getCPtr(nodes), nodes);
+  }
+
 }

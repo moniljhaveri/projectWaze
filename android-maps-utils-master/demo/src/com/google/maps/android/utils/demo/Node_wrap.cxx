@@ -966,6 +966,17 @@ SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_rese
 }
 
 
+SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_restore_1all_1links(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  vector< Node > *arg1 = (vector< Node > *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(vector< Node > **)&jarg1; 
+  restore_all_links(arg1);
+}
+
+
 SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_new_1NodeVec_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   std::vector< Node > *result = 0 ;
@@ -1484,7 +1495,7 @@ SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_dele
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_new_1YenPath_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
+SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_new_1K_1Paths_1_1SWIG_10(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   std::vector< std::vector< Node * > * > *result = 0 ;
   
@@ -1496,7 +1507,7 @@ SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_new
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_new_1YenPath_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_new_1K_1Paths_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   jlong jresult = 0 ;
   std::vector< std::vector< Node * > * >::size_type arg1 ;
   std::vector< std::vector< Node * > * > *result = 0 ;
@@ -1510,7 +1521,7 @@ SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_new
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenPath_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_K_1Paths_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   std::vector< std::vector< Node * > * > *arg1 = (std::vector< std::vector< Node * > * > *) 0 ;
   std::vector< std::vector< Node * > * >::size_type result;
@@ -1525,7 +1536,7 @@ SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_Yen
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenPath_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_K_1Paths_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   std::vector< std::vector< Node * > * > *arg1 = (std::vector< std::vector< Node * > * > *) 0 ;
   std::vector< std::vector< Node * > * >::size_type result;
@@ -1540,7 +1551,7 @@ SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_Yen
 }
 
 
-SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenPath_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_K_1Paths_1reserve(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   std::vector< std::vector< Node * > * > *arg1 = (std::vector< std::vector< Node * > * > *) 0 ;
   std::vector< std::vector< Node * > * >::size_type arg2 ;
   
@@ -1553,7 +1564,7 @@ SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenP
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenPath_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT jboolean JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_K_1Paths_1isEmpty(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
   std::vector< std::vector< Node * > * > *arg1 = (std::vector< std::vector< Node * > * > *) 0 ;
   bool result;
@@ -1568,7 +1579,7 @@ SWIGEXPORT jboolean JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_
 }
 
 
-SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenPath_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_K_1Paths_1clear(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   std::vector< std::vector< Node * > * > *arg1 = (std::vector< std::vector< Node * > * > *) 0 ;
   
   (void)jenv;
@@ -1579,7 +1590,7 @@ SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenP
 }
 
 
-SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenPath_1add(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
+SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_K_1Paths_1add(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_) {
   std::vector< std::vector< Node * > * > *arg1 = (std::vector< std::vector< Node * > * > *) 0 ;
   std::vector< std::vector< Node * > * >::value_type *arg2 = 0 ;
   std::vector< std::vector< Node * > * >::value_type temp2 = 0 ;
@@ -1595,7 +1606,7 @@ SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenP
 }
 
 
-SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenPath_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_K_1Paths_1get(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
   jlong jresult = 0 ;
   std::vector< std::vector< Node * > * > *arg1 = (std::vector< std::vector< Node * > * > *) 0 ;
   int arg2 ;
@@ -1619,7 +1630,7 @@ SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_Yen
 }
 
 
-SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenPath_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_K_1Paths_1set(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
   std::vector< std::vector< Node * > * > *arg1 = (std::vector< std::vector< Node * > * > *) 0 ;
   int arg2 ;
   std::vector< std::vector< Node * > * >::value_type *arg3 = 0 ;
@@ -1644,7 +1655,7 @@ SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_YenP
 }
 
 
-SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_delete_1YenPath(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+SWIGEXPORT void JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_delete_1K_1Paths(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   std::vector< std::vector< Node * > * > *arg1 = (std::vector< std::vector< Node * > * > *) 0 ;
   
   (void)jenv;

@@ -53,7 +53,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".TurnByTurnActivity"
-            android:label="@string/title_activity_contacts"></activity>
+            android:label="@string/title_activity_contacts" />
+        <activity
+            android:name=".PathTabs"
+            android:label="@string/title_activity_path_tabs"></activity>
     </application>
 
 </manifest>

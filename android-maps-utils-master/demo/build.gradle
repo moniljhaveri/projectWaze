@@ -5,6 +5,7 @@ dependencies {
     // Or, fetch from Maven:
     // compile 'com.google.maps.android:android-maps-utils:0.3+'
     compile 'com.google.android.gms:play-services-maps:8.4.0'
+    compile 'com.android.support:support-v13:23.2.1'
 }
 
 android {
@@ -40,7 +41,7 @@ android {
             moduleName "NodeWrap" // Name of C++ module (i.e. libSeePlusPlus
             moduleName "SmoothSortWrap"
             moduleName "DijkstraWrap"
-            moduleName "YenWrap"
+            moduleName "K_PathsWrap"
 
             cFlags "-std=c++11 -fexceptions" // Add provisions to allow C++11 functionality
             stl "stlport_shared" // Which STL library to use: gnustl or stlport

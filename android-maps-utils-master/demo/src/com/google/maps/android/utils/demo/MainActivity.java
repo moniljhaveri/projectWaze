@@ -23,7 +23,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+import com.google.maps.android.clustering.Cluster;
+
+public class MainActivity extends Activity {
     private ViewGroup mListView;
 
     static {
@@ -39,7 +41,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     static {
-        System.loadLibrary("YenWrap");
+        System.loadLibrary("K_PathsWrap");
     }
 
     //private NodeVec nodeVector = new NodeVec();
@@ -50,11 +52,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        mListView = (ViewGroup) findViewById(R.id.list);
+        //mListView = (ViewGroup) findViewById(R.id.list);
 
-        addDemo("Clustering", ClusteringDemoActivity.class);
+        Intent clusterIntent= new Intent(MainActivity.this, ClusteringDemoActivity.class);
+        startActivity(clusterIntent);
+
+        //addDemo("Clustering", ClusteringDemoActivity.class);
     }
-
+/*
     private void addDemo(String demoName, Class<? extends Activity> activityClass) {
         Button b = new Button(this);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -69,5 +74,5 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         Class activityClass = (Class) view.getTag();
         startActivity(new Intent(this, activityClass));
-    }
+    }*/
 }

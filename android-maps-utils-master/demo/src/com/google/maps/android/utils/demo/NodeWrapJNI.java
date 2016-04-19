@@ -58,6 +58,7 @@ public class NodeWrapJNI {
   public final static native double Node_getGVal(long jarg1, Node jarg1_);
   public final static native void delete_Node(long jarg1);
   public final static native void reset_nodes(long jarg1, NodeVec jarg1_);
+  public final static native void restore_all_links(long jarg1, NodeVec jarg1_);
   public final static native long new_NodeVec__SWIG_0();
   public final static native long new_NodeVec__SWIG_1(long jarg1);
   public final static native long NodeVec_size(long jarg1, NodeVec jarg1_);
@@ -91,15 +92,15 @@ public class NodeWrapJNI {
   public final static native long LinkedNodes_get(long jarg1, LinkedNodes jarg1_, int jarg2);
   public final static native void LinkedNodes_set(long jarg1, LinkedNodes jarg1_, int jarg2, long jarg3, Node.linkedNode jarg3_);
   public final static native void delete_LinkedNodes(long jarg1);
-  public final static native long new_YenPath__SWIG_0();
-  public final static native long new_YenPath__SWIG_1(long jarg1);
-  public final static native long YenPath_size(long jarg1, YenPath jarg1_);
-  public final static native long YenPath_capacity(long jarg1, YenPath jarg1_);
-  public final static native void YenPath_reserve(long jarg1, YenPath jarg1_, long jarg2);
-  public final static native boolean YenPath_isEmpty(long jarg1, YenPath jarg1_);
-  public final static native void YenPath_clear(long jarg1, YenPath jarg1_);
-  public final static native void YenPath_add(long jarg1, YenPath jarg1_, long jarg2, PathVec jarg2_);
-  public final static native long YenPath_get(long jarg1, YenPath jarg1_, int jarg2);
-  public final static native void YenPath_set(long jarg1, YenPath jarg1_, int jarg2, long jarg3, PathVec jarg3_);
-  public final static native void delete_YenPath(long jarg1);
+  public final static native long new_K_Paths__SWIG_0();
+  public final static native long new_K_Paths__SWIG_1(long jarg1);
+  public final static native long K_Paths_size(long jarg1, K_Paths jarg1_);
+  public final static native long K_Paths_capacity(long jarg1, K_Paths jarg1_);
+  public final static native void K_Paths_reserve(long jarg1, K_Paths jarg1_, long jarg2);
+  public final static native boolean K_Paths_isEmpty(long jarg1, K_Paths jarg1_);
+  public final static native void K_Paths_clear(long jarg1, K_Paths jarg1_);
+  public final static native void K_Paths_add(long jarg1, K_Paths jarg1_, long jarg2, PathVec jarg2_);
+  public final static native long K_Paths_get(long jarg1, K_Paths jarg1_, int jarg2);
+  public final static native void K_Paths_set(long jarg1, K_Paths jarg1_, int jarg2, long jarg3, PathVec jarg3_);
+  public final static native void delete_K_Paths(long jarg1);
 }
