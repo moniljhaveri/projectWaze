@@ -46,14 +46,11 @@ public class PathTabs extends TabActivity implements TabHost.OnTabChangeListener
         // setup list view 1
         listView1 = (ListView) findViewById(R.id.list1);
         String[] path1 = extras.getStringArray("path1");
-
-        // create some dummy strings to add to the list
         listView1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, path1));
 
         // setup list view 2
         listView2 = (ListView) findViewById(R.id.list2);
         String[] path2 = extras.getStringArray("path2");
-
         listView2.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, path2));
 
         listView3 = (ListView) findViewById(R.id.list3);

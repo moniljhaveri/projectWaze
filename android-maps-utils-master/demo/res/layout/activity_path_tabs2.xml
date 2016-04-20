@@ -5,17 +5,24 @@
     <LinearLayout android:orientation="vertical"
         android:layout_width="fill_parent" android:layout_height="fill_parent">
         <TabWidget android:id="@android:id/tabs"
-            android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:clickable="false" />
         <FrameLayout android:id="@android:id/tabcontent"
             android:layout_width="fill_parent" android:layout_height="fill_parent">
-            <ListView android:id="@+id/list1" android:layout_width="fill_parent"
-                android:layout_height="wrap_content" android:layout_weight="1">
+            <ListView
+                android:id="@+id/list1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#F70DFF">
             </ListView>
             <ListView android:id="@+id/list2" android:layout_width="fill_parent"
-                android:layout_height="wrap_content" android:layout_weight="1">
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:background="#ff0b03">
             </ListView>
             <ListView android:id="@+id/list3" android:layout_width="fill_parent"
-                android:layout_height="wrap_content" android:layout_weight="1">
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:background="#4000ff">
             </ListView>
         </FrameLayout>
     </LinearLayout>

@@ -25,8 +25,9 @@ import android.widget.Button;
 
 import com.google.maps.android.clustering.Cluster;
 
+import android.os.Handler;
+
 public class MainActivity extends Activity {
-    private ViewGroup mListView;
 
     static {
         System.loadLibrary("NodeWrap");
@@ -44,10 +45,10 @@ public class MainActivity extends Activity {
         System.loadLibrary("K_PathsWrap");
     }
 
-    //private NodeVec nodeVector = new NodeVec();
-    //Comment to see if I can push to the repository
+    private final int SPLASH_DISPLAY_LENGTH = 1000;
+    /** Duration of wait **/
 
-    @Override
+   /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -57,22 +58,26 @@ public class MainActivity extends Activity {
         Intent clusterIntent= new Intent(MainActivity.this, ClusteringDemoActivity.class);
         startActivity(clusterIntent);
 
-        //addDemo("Clustering", ClusteringDemoActivity.class);
-    }
-/*
-    private void addDemo(String demoName, Class<? extends Activity> activityClass) {
-        Button b = new Button(this);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        b.setLayoutParams(layoutParams);
-        b.setText(demoName);
-        b.setTag(activityClass);
-        b.setOnClickListener(this);
-        mListView.addView(b);
-    }
+    }*/
 
     @Override
-    public void onClick(View view) {
-        Class activityClass = (Class) view.getTag();
-        startActivity(new Intent(this, activityClass));
-    }*/
+    public void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        setContentView(R.layout.main);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                /* Create an Intent that will start the Menu-Activity. */
+                Intent mainIntent = new Intent(MainActivity.this, ClusteringDemoActivity.class);
+                MainActivity.this.startActivity(mainIntent);
+                MainActivity.this.finish();
+            }
+        }, SPLASH_DISPLAY_LENGTH);
+    }
 }
+
+
+
+
+
+

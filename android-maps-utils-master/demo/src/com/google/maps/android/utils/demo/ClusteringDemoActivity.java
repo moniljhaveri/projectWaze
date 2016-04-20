@@ -19,6 +19,7 @@ package com.google.maps.android.utils.demo;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -58,6 +59,10 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
     int turnByTurn = 0;
     int pathCalcFinished = 0;
     private ProgressBar bar;
+    TextView Path1Text = null;
+    TextView Path2Text = null;
+    TextView Path3Text = null;
+    //public MyItem clickedItem = null;
 
     protected void LoadNodes(){
 
@@ -121,7 +126,7 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
        // DrawRoads();
         final UiSettings mUiSettings = getMap().getUiSettings();
         mUiSettings.setZoomControlsEnabled(true);
-        getMap().setPadding(0,50,0,100);
+        getMap().setPadding(0, 50, 0, 100);
 
 
 
@@ -139,6 +144,15 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
         final Button goButton = (Button) findViewById(R.id.button2);
         Button clearButton = (Button) findViewById(R.id.button3);
         bar = (ProgressBar) this.findViewById(R.id.progressBar);
+        bar.getIndeterminateDrawable().setColorFilter(0xFF0DAEFF, PorterDuff.Mode.MULTIPLY);
+        Path1Text = (TextView) findViewById(R.id.Path1);
+        Path1Text.setText("Path 1");
+        Path2Text = (TextView) findViewById(R.id.Path2);
+        Path2Text.setText("Path 2");
+        Path3Text = (TextView) findViewById(R.id.Path3);
+        Path3Text.setText("Path 3");
+       // Path1Text.setVisibility(View.INVISIBLE);
+
 
 
         getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(nodeVector.get(0).getLat(), nodeVector.get(0).getLon()), 10));
@@ -151,7 +165,13 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
                 LatLng curScreenNE = getMap().getProjection().getVisibleRegion().latLngBounds.northeast;
                 LatLng curScreenSW = getMap().getProjection().getVisibleRegion().latLngBounds.southwest;
 
-
+                /*
+                float minZoom = 7.0f;
+                if (cameraPosition.zoom < minZoom)
+                    getMap().animateCamera(CameraUpdateFactory.zoomTo(minZoom));
+                Log.d("Current Zoom: ", Float.toString(cameraPosition.zoom));
+                //Log.d("Current Map:", Float.toString(getMap().getMaxZoomLevel()));
+                */
                 mClusterManager.clearItems();
                 getMap().clear();
                 for (int i = 0; i < nodeVector.size(); i++) {
@@ -160,7 +180,9 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
                         if (nodeVector.get(i).getLon() < curScreenNE.longitude && nodeVector.get(i).getLon() > curScreenSW.longitude) {
                             // Log.d("Pan","worked");
                             mClusterManager.addItem(new MyItem(nodeVector.get(i).getLat(), nodeVector.get(i).getLon(), nodeVector.get(i).getID(),
-                                    "Node: " + Integer.toString(nodeVector.get(i).getID()) + " Latitude: " + Double.toString(nodeVector.get(i).getLat()) + " Longitude: " + Double.toString(nodeVector.get(i).getLon())));
+                                    "Node: " + Integer.toString(nodeVector.get(i).getID())
+                                            + " Latitude: " + Double.toString(nodeVector.get(i).getLat())
+                                            + " Longitude: " + Double.toString(nodeVector.get(i).getLon())));
                             //Log.d("change called", "yes");
 
                             if (cameraPosition.zoom > 10) {
@@ -170,7 +192,7 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
                                     Polyline road = getMap().addPolyline(new PolylineOptions()
                                             .add(new LatLng(nodeVector.get(i).getLat(), nodeVector.get(i).getLon()),
                                                     new LatLng(links.get(m).getNode().getLat(), links.get(m).getNode().getLon()))
-                                            .width(5)
+                                            .width(8)
                                             .color(Color.BLACK));
                                     road.setVisible(true);
                                 }
@@ -179,45 +201,45 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
                     }
                 }
                 // Path 3
-                if(pathVecs.size() > 2) {
+                if (pathVecs.size() > 2) {
                     for (int m = 0; m < pathVecs.get(2).size() - 1; m++) {
                         if (pathVecs.get(2).get(m).getLat() < curScreenNE.latitude && pathVecs.get(2).get(m).getLat() > curScreenSW.latitude) {
                             if (pathVecs.get(2).get(m).getLon() < curScreenNE.longitude && pathVecs.get(2).get(m).getLon() > curScreenSW.longitude) {
                                 Polyline road = getMap().addPolyline(new PolylineOptions()
                                         .add(new LatLng(pathVecs.get(2).get(m).getLat(), pathVecs.get(2).get(m).getLon()),
                                                 new LatLng(pathVecs.get(2).get(m + 1).getLat(), pathVecs.get(2).get(m + 1).getLon()))
-                                        .width(5)
-                                        .color(Color.GREEN));
+                                        .width(8)
+                                        .color(0xFF4000FF));
                                 road.setVisible(true);
                             }
                         }
                     }
                 }
                 // Path 2
-                if(pathVecs.size() > 1) {
+                if (pathVecs.size() > 1) {
                     for (int m = 0; m < pathVecs.get(1).size() - 1; m++) {
                         if (pathVecs.get(1).get(m).getLat() < curScreenNE.latitude && pathVecs.get(1).get(m).getLat() > curScreenSW.latitude) {
                             if (pathVecs.get(1).get(m).getLon() < curScreenNE.longitude && pathVecs.get(1).get(m).getLon() > curScreenSW.longitude) {
                                 Polyline road = getMap().addPolyline(new PolylineOptions()
                                         .add(new LatLng(pathVecs.get(1).get(m).getLat(), pathVecs.get(1).get(m).getLon()),
                                                 new LatLng(pathVecs.get(1).get(m + 1).getLat(), pathVecs.get(1).get(m + 1).getLon()))
-                                        .width(5)
-                                        .color(Color.CYAN));
+                                        .width(8)
+                                        .color(0xFFFF0B03));
                                 road.setVisible(true);
                             }
                         }
                     }
                 }
                 //Path 1
-                if(pathVecs.size() > 0) {
+                if (pathVecs.size() > 0) {
                     for (int m = 0; m < pathVecs.get(0).size() - 1; m++) {
                         if (pathVecs.get(0).get(m).getLat() < curScreenNE.latitude && pathVecs.get(0).get(m).getLat() > curScreenSW.latitude) {
                             if (pathVecs.get(0).get(m).getLon() < curScreenNE.longitude && pathVecs.get(0).get(m).getLon() > curScreenSW.longitude) {
                                 Polyline road = getMap().addPolyline(new PolylineOptions()
                                         .add(new LatLng(pathVecs.get(0).get(m).getLat(), pathVecs.get(0).get(m).getLon()),
                                                 new LatLng(pathVecs.get(0).get(m + 1).getLat(), pathVecs.get(0).get(m + 1).getLon()))
-                                        .width(5)
-                                        .color(Color.MAGENTA));
+                                        .width(8)
+                                        .color(0xFFF70DFF));
                                 road.setVisible(true);
                             }
                         }
@@ -225,18 +247,19 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
                 }
                 // Needed to make sure markers recluster on camera pan
                 mClusterManager.cluster();
+                //mClusterManager.
 
                 if (linkedNodes != null) {
                     for (int m = 0; m < linkedNodes.size(); m++) {
                         Polyline road = getMap().addPolyline(new PolylineOptions()
                                 .add(new LatLng(nodeVector.get(linkID).getLat(), nodeVector.get(linkID).getLon()),
                                         new LatLng(linkedNodes.get(m).getNode().getLat(), linkedNodes.get(m).getNode().getLon()))
-                                .width(5)
-                                .color(Color.RED));
+                                .width(8)
+                                .color(Color.YELLOW));
                         road.setVisible(true);
                     }
                 }
-                linkedNodes = null;
+                //linkedNodes = null;
                 //linkID = -1;
             }
         });
@@ -247,9 +270,9 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
                 item.setTitle("Node: " + Integer.toString(item.getID()) + " Latitude: "
                         + Double.toString(nodeVector.get(item.getID()).getLat()) +
                         " Longitude: " + Double.toString(nodeVector.get(item.getID()).getLon()));
-                Log.d("Item: ", Integer.toString(item.getID()));
                 linkedNodes = nodeVector.get(item.getID()).getLinkedNodes();
                 linkID = item.getID();
+                //clickedItem = item;
 
 
                 return false;
@@ -262,8 +285,8 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
             public void onClick(View v) {
                 if (linkID != -1) {
                     startID = linkID;
-                    String buttonText = " Start: Node "+ Integer.toString(startID)+ ", "
-                           + Double.toString(nodeVector.get(linkID).getLat()) + ", "
+                    String buttonText = " Start: Node " + Integer.toString(startID) + ", "
+                            + Double.toString(nodeVector.get(linkID).getLat()) + ", "
                             + Double.toString(nodeVector.get(linkID).getLon());
                     startText.setText(buttonText);
                 }
@@ -288,7 +311,7 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
 
             @Override
             public void onClick(View v) {
-                if (endID > -1 && startID > -1 && turnByTurn == 0) {
+                if (endID > -1 && startID > -1 && endID != startID && turnByTurn == 0 ) {
                     //setTitle("Loading...");
                     new ProgressTask().execute();
                     // DijkstraWrap.Dijkstra(nodeVector, pathVector, nodeVector.get(startID), nodeVector.get(endID));
@@ -296,62 +319,13 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
                     goButton.setText("Turn By Turn");
                     turnByTurn = 1;
                 } else if (turnByTurn == 1 && pathCalcFinished == 1) {
-
-                    //Path 3
-                    LinkedNodes links = new LinkedNodes();
-                    String[] path3IDs = new String[(int) pathVecs.get(2).size()];
-                    double roadDistance = 0;
-                    double totalDistance = 0;
-                    for (int i = 0; i < pathVecs.get(2).size() - 1; i++) {
-                        links = nodeVector.get(pathVecs.get(2).get(i).getID()).getLinkedNodes();
-                        int roadID = -1;
-                        for (int j = 0; j < links.size(); j++) {
-                            if (links.get(j).getNode().getID() == pathVecs.get(2).get(i + 1).getID()) {
-                                //Log.d("Links","In If");
-                                roadID = links.get(j).getID();
-                                roadDistance = links.get(j).getDistance();
-                                totalDistance += roadDistance;
-                                break;
-                            }
-                        }
-
-                        path3IDs[i] = "Take road " + Integer.toString(roadID) + " from node "
-                                + Integer.toString(pathVecs.get(2).get(i).getID()) + " to node "
-                                + Integer.toString(pathVecs.get(2).get(i + 1).getID()) + ". Dist: "
-                                + Double.toString(roadDistance);
-                    }
-                    path3IDs[(int) pathVecs.get(2).size() - 1] = "Total Distance: " + Double.toString(totalDistance);
-
-                    //Path 2
-                    links = null;
-                    String[] path2IDs = new String[(int) pathVecs.get(1).size()];
-                    roadDistance = 0;
-                    totalDistance = 0;
-                    for (int i = 0; i < pathVecs.get(1).size() - 1; i++) {
-                        links = nodeVector.get(pathVecs.get(1).get(i).getID()).getLinkedNodes();
-                        int roadID = -1;
-                        for (int j = 0; j < links.size(); j++) {
-                            if (links.get(j).getNode().getID() == pathVecs.get(1).get(i + 1).getID()) {
-                                //Log.d("Links","In If");
-                                roadID = links.get(j).getID();
-                                roadDistance = links.get(j).getDistance();
-                                totalDistance += roadDistance;
-                                break;
-                            }
-                        }
-
-                        path2IDs[i] = "Take road " + Integer.toString(roadID) + " from node "
-                                + Integer.toString(pathVecs.get(1).get(i).getID()) + " to node "
-                                + Integer.toString(pathVecs.get(1).get(i + 1).getID()) + ". Dist: "
-                                + Double.toString(roadDistance);
-                    }
-                    path2IDs[(int) pathVecs.get(1).size() - 1] = "Total Distance: " + Double.toString(totalDistance);
+                    Intent dirList = new Intent(ClusteringDemoActivity.this, PathTabs.class);
 
                     //Path 1
-                    links = null;
+                    LinkedNodes links = new LinkedNodes();
                     String[] path1IDs = new String[(int) pathVecs.get(0).size()];
-                    roadDistance = 0;
-                    totalDistance = 0;
+                    double roadDistance = 0;
+                    double totalDistance = 0;
                     for (int i = 0; i < pathVecs.get(0).size() - 1; i++) {
                         links = nodeVector.get(pathVecs.get(0).get(i).getID()).getLinkedNodes();
                         int roadID = -1;
@@ -371,12 +345,66 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
                                 + Double.toString(roadDistance);
                     }
                     path1IDs[(int) pathVecs.get(0).size() - 1] = "Total Distance: " + Double.toString(totalDistance);
+                    dirList.putExtra("path1", path1IDs);
+
+                    //Path 2
+                    links = null;
+                    String[] path2IDs = new String[(int) pathVecs.get(1).size()];
+                    roadDistance = 0;
+                    totalDistance = 0;
+                    if(pathVecs.get(1).size() > 0) {
+                        for (int i = 0; i < pathVecs.get(1).size() - 1; i++) {
+                            links = nodeVector.get(pathVecs.get(1).get(i).getID()).getLinkedNodes();
+                            int roadID = -1;
+                            for (int j = 0; j < links.size(); j++) {
+                                if (links.get(j).getNode().getID() == pathVecs.get(1).get(i + 1).getID()) {
+                                    //Log.d("Links","In If");
+                                    roadID = links.get(j).getID();
+                                    roadDistance = links.get(j).getDistance();
+                                    totalDistance += roadDistance;
+                                    break;
+                                }
+                            }
+
+                            path2IDs[i] = "Take road " + Integer.toString(roadID) + " from node "
+                                    + Integer.toString(pathVecs.get(1).get(i).getID()) + " to node "
+                                    + Integer.toString(pathVecs.get(1).get(i + 1).getID()) + ". Dist: "
+                                    + Double.toString(roadDistance);
+                        }
+                        path2IDs[(int) pathVecs.get(1).size() - 1] = "Total Distance: " + Double.toString(totalDistance);
+                        dirList.putExtra("path2", path2IDs);
+                    }
+
+                    //Path 3
+                    links = null;
+                    String[] path3IDs = new String[(int) pathVecs.get(2).size()];
+                    roadDistance = 0;
+                    totalDistance = 0;
+                    if(pathVecs.get(2).size() > 0) {
+                        for (int i = 0; i < pathVecs.get(2).size() - 1; i++) {
+                            links = nodeVector.get(pathVecs.get(2).get(i).getID()).getLinkedNodes();
+                            int roadID = -1;
+                            for (int j = 0; j < links.size(); j++) {
+                                if (links.get(j).getNode().getID() == pathVecs.get(2).get(i + 1).getID()) {
+                                    //Log.d("Links","In If");
+                                    roadID = links.get(j).getID();
+                                    roadDistance = links.get(j).getDistance();
+                                    totalDistance += roadDistance;
+                                    break;
+                                }
+                            }
+
+                            path3IDs[i] = "Take road " + Integer.toString(roadID) + " from node "
+                                    + Integer.toString(pathVecs.get(2).get(i).getID()) + " to node "
+                                    + Integer.toString(pathVecs.get(2).get(i + 1).getID()) + ". Dist: "
+                                    + Double.toString(roadDistance);
+                        }
+                        path3IDs[(int) pathVecs.get(2).size() - 1] = "Total Distance: " + Double.toString(totalDistance);
+                        dirList.putExtra("path3", path3IDs);
+                    }
+
 
                     //Intent dirList = new Intent(ClusteringDemoActivity.this, TurnByTurnActivity.class);
-                    Intent dirList = new Intent(ClusteringDemoActivity.this, PathTabs.class);
-                    dirList.putExtra("path3", path3IDs);
-                    dirList.putExtra("path2", path2IDs);
-                    dirList.putExtra("path1", path1IDs);
                     startActivity(dirList);
 
                 }
@@ -397,6 +425,10 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
                 turnByTurn = 0;
                 pathCalcFinished = 0;
                 goButton.setText("Go!");
+               //
+                Path1Text.setVisibility(View.INVISIBLE);
+                Path2Text.setVisibility(View.INVISIBLE);
+                Path3Text.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -423,6 +455,10 @@ public class ClusteringDemoActivity extends BaseDemoActivity {
         protected void onPostExecute(Void result) {
             bar.setVisibility(View.GONE);
             getMap().moveCamera(CameraUpdateFactory.newLatLng(getMap().getCameraPosition().target));
+            Path1Text.setVisibility(View.VISIBLE);
+            Path2Text.setVisibility(View.VISIBLE);
+            Path3Text.setVisibility(View.VISIBLE);
+
 
         }
     }
