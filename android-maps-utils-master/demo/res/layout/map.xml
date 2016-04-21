@@ -10,7 +10,8 @@
           android:id="@+id/map"
           android:layout_width="match_parent"
           android:layout_height="match_parent"
-          android:name="com.google.android.gms.maps.SupportMapFragment" />
+          android:name="com.google.android.gms.maps.SupportMapFragment"
+        tools:layout="@layout/map" />
     <Button android:id="@+id/button0"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
@@ -93,11 +94,6 @@
         android:layout_marginLeft="312dip"
         android:text="Clear" />
 
-    <ListView
-        android:id="@+id/dirListView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -107,5 +103,55 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:visibility="gone" />
+
+
+    <TextView
+        android:id="@+id/Path1"
+        android:layout_marginTop="50dip"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:background="@drawable/pathstyle"
+        android:layout_width="137dp"
+        android:layout_height="25dp"
+        android:shadowColor="#999999"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:visibility="invisible"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/Path2"
+        android:layout_marginTop="50dip"
+        android:layout_marginLeft="137dip"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:background="@drawable/path2style"
+        android:layout_width="137dp"
+        android:layout_height="25dp"
+        android:shadowColor="#999999"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:visibility="invisible"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/Path3"
+        android:layout_marginTop="50dip"
+        android:layout_marginLeft="274dip"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:background="@drawable/path3style"
+        android:layout_width="138dp"
+        android:layout_height="25dp"
+        android:shadowColor="#999999"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:visibility="invisible"
+        android:gravity="center"/>
+
+
 
 </RelativeLayout>

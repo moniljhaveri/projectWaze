@@ -31,8 +31,8 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE    := YenWrap
-LOCAL_SRC_FILES := Yen_wrap.cxx Yen.cpp Node.cpp SmoothsortPriorityQueue.cpp Dijkstra.cpp
+LOCAL_MODULE    := K_PathsWrap
+LOCAL_SRC_FILES := k_paths_wrap.cxx k_paths.cpp Node.cpp SmoothsortPriorityQueue.cpp Dijkstra.cpp
 LOCAL_LDLIBS += -latomic
 LOCAL_CFLAGS    := -frtti -fexceptions
 

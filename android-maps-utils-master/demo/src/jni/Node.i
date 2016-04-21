@@ -10,6 +10,6 @@ namespace std{
      %template(NodeVec) vector<Node>;
      %template(PathVec) vector<Node*>;
      %template(LinkedNodes) vector<Node::linkedNode>;
-     %template(YenPath) vector<vector<Node*>*>;
+     %template(K_Paths) vector<vector<Node*>*>;
  }
 
