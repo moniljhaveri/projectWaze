@@ -76,6 +76,9 @@ double Node::getDistanceTo(Node *node)
 vector<Node::linkedNode> Node::getLinkedNodes()
 { return this->linked_nodes; }
 
+int Node::getNumberOfLinkedNodes()
+{ return this->linked_nodes.size(); }
+
 bool Node::hasLinkedNodes()
 { return ((this->linked_nodes.size() == 0) ? false : true); }
 

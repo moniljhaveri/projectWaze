@@ -23,6 +23,7 @@ class Node
 		bool isInGraph();
 		double getDistanceTo(Node *node);
 		vector<Node::linkedNode> getLinkedNodes();
+		int getNumberOfLinkedNodes();
 		bool hasLinkedNodes();
 		void setID(int ID);
 		int getID();
