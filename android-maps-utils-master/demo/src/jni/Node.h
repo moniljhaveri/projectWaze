@@ -14,28 +14,29 @@ class Node
     		Node *node;
     		double distance;
 		};
-		void addLinkedNodeRaw(int ID=0, Node *node= nullptr, double distance=0);
+		void addLinkedNodeRaw(int ID = 0, Node *node = nullptr, double distance = 0);
 		void addLinkedNode(Node::linkedNode node);
-		void removeLinkedNode(Node *node= nullptr);
+		void removeLinkedNode(Node *node = nullptr);
 		void restoreLinks();
 		void removeNode();
 		void addNode();
 		bool isInGraph();
-		double getDistanceTo(Node *node= nullptr);
+		double getDistanceTo(Node *node = nullptr);
 		vector<Node::linkedNode> getLinkedNodes();
+		int getNumberOfLinkedNodes();
 		bool hasLinkedNodes();
-		void setID(int ID=0);
+		void setID(int ID = 0);
 		int getID();
-		void setLatLon(double lat=0, double lon=0);
+		void setLatLon(double lat = 0, double lon = 0);
 		double getLat();
 		double getLon();
-		void setDistanceFromStart(double distance=0);
+		void setDistanceFromStart(double distance = 0);
 		double getDistanceFromStart();
-		void setParent(Node *node=nullptr);
+		void setParent(Node *node = nullptr);
 		Node *getParent();
-		void setHVal(double h_val=0);
+		void setHVal(double h_val = 0);
 		double getHVal();
-		void setGVal(double g_val=0);
+		void setGVal(double g_val = 0);
 		double getGVal();
 
 	private:

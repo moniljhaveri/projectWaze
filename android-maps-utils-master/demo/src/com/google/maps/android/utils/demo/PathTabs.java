@@ -42,38 +42,47 @@ public class PathTabs extends TabActivity implements TabHost.OnTabChangeListener
 
         Intent map = getIntent();
         Bundle extras = map.getExtras();
+        if(!extras.isEmpty()) {
+            // setup list view 1
+            if(extras.containsKey("path1")) {
+                listView1 = (ListView) findViewById(R.id.list1);
+                String[] path1 = extras.getStringArray("path1");
+                listView1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, path1));
 
-        // setup list view 1
-        listView1 = (ListView) findViewById(R.id.list1);
-        String[] path1 = extras.getStringArray("path1");
-        listView1.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, path1));
-
-        // setup list view 2
-        listView2 = (ListView) findViewById(R.id.list2);
-        String[] path2 = extras.getStringArray("path2");
-        listView2.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, path2));
-
-        listView3 = (ListView) findViewById(R.id.list3);
-        String[] path3 = extras.getStringArray("path3");
-        listView3.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, path3));
-
-        // add views to tab host
-        tabHost.addTab(tabHost.newTabSpec(LIST1_TAB_TAG).setIndicator(LIST1_TAB_TAG).setContent(new TabHost.TabContentFactory() {
-            public View createTabContent(String arg0) {
-                return listView1;
+                tabHost.addTab(tabHost.newTabSpec(LIST1_TAB_TAG).setIndicator(LIST1_TAB_TAG).setContent(new TabHost.TabContentFactory() {
+                    public View createTabContent(String arg0) {
+                        return listView1;
+                    }
+                }));
             }
-        }));
-        tabHost.addTab(tabHost.newTabSpec(LIST2_TAB_TAG).setIndicator(LIST2_TAB_TAG).setContent(new TabHost.TabContentFactory() {
-            public View createTabContent(String arg0) {
-                return listView2;
-            }
-        }));
-        tabHost.addTab(tabHost.newTabSpec(LIST3_TAB_TAG).setIndicator(LIST3_TAB_TAG).setContent(new TabHost.TabContentFactory() {
-            public View createTabContent(String arg0) {
-                return listView3;
-            }
-        }));
+            // setup list view 2
+            if(extras.containsKey("path2")) {
+                listView2 = (ListView) findViewById(R.id.list2);
+                String[] path2 = extras.getStringArray("path2");
+                listView2.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, path2));
 
+                tabHost.addTab(tabHost.newTabSpec(LIST2_TAB_TAG).setIndicator(LIST2_TAB_TAG).setContent(new TabHost.TabContentFactory() {
+                    public View createTabContent(String arg0) {
+                        return listView2;
+                    }
+                }));
+            }
+
+            if(extras.containsKey("path3")) {
+                listView3 = (ListView) findViewById(R.id.list3);
+                String[] path3 = extras.getStringArray("path3");
+                listView3.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, path3));
+
+                tabHost.addTab(tabHost.newTabSpec(LIST3_TAB_TAG).setIndicator(LIST3_TAB_TAG).setContent(new TabHost.TabContentFactory() {
+                    public View createTabContent(String arg0) {
+                        return listView3;
+                    }
+                }));
+                tabHost.setCurrentTab(2);
+                tabHost.setCurrentTab(1);
+                tabHost.setCurrentTab(0);
+            }
+        }
     }
 
     /**

@@ -2,4 +2,5 @@
 <resources>
     <color name="customBlue">#0daeff</color>
     <color name="customPressed">#0d94d9</color>
+    <color name="startNew">#0eb99c</color>
 </resources>

@@ -20,7 +20,7 @@
 void k_paths(vector<Node>* nodes, vector< vector<Node*>* >* paths, Node *start_node, Node *end_node, unsigned int k_max)
 {
   bool debug = true;
-  
+
 	// get the 0th (absolute) shortest path
   if (debug) cout << "calculating path 0" << endl;
 	paths->push_back(new vector<Node*>);
@@ -35,33 +35,62 @@ void k_paths(vector<Node>* nodes, vector< vector<Node*>* >* paths, Node *start_n
 
     int previous_path_size = last_path_ptr->size();
 
-    // node at start of path to remove
+    // Pick out the node in the middle of the previous path.
+    // Starting at that node, check nodes moving out from the center
+    // until we find a node that has > 2 linked nodes. This way
+    // when we remove the links to it's next node and it's previous
+    // node, the node will still have a place to go (at least
+    // locally.)
     int spur_node_index = (previous_path_size-1) / 2;
-    Node *spur_node = last_path_ptr->at(spur_node_index);
-
-    spur_node->removeLinkedNode( last_path_ptr->at(spur_node_index+1) );
-
-    vector<Node*> tmp_path;
-  	Dijkstra( nodes, &tmp_path, spur_node, end_node );
-
-    // if the end node has a distance of infinity, it means we couldn't find a path
-    if ( end_node->getDistanceFromStart() != numeric_limits<double>::infinity() )
+    Node *spur_node;
+    bool found = false;
+    int offset = 1;
+    while((spur_node_index >= 0) && (spur_node_index < previous_path_size-1))
     {
-      paths->push_back(new vector<Node*>);
-
-      // set the current path as the previous path up to the spur
-      for (vector<Node*>::iterator node_it = last_path_ptr->begin() ; node_it != last_path_ptr->end(); ++node_it)
+      spur_node = last_path_ptr->at(spur_node_index);
+      // if it's the first node it only needs to have at least two links
+      int min_links = (spur_node_index == 0) ? 1 : 2;
+      if (spur_node->getNumberOfLinkedNodes() > min_links)
       {
-        if (*node_it == spur_node) break;
-        paths->back()->push_back(*node_it);
+        found = true;
+        break;
       }
-      // add the new path found
-      for (vector<Node*>::iterator node_it = tmp_path.begin() ; node_it != tmp_path.end(); ++node_it)
-        paths->back()->push_back(*node_it);
 
-      reset_nodes(nodes);
+      // This bit moves us out from the center of the previous path
+      // For example, if we started at node 10, the sequence of
+      // nodes we'd check is 10, 9, 11, 8, 12, 7, 13, etc.
+      if (offset % 2 == 0) spur_node_index += offset;
+      else spur_node_index -= offset;
+      offset++;
     }
-    else return;
+
+    if (found)
+    {
+      spur_node->removeLinkedNode( last_path_ptr->at(spur_node_index+1) );
+      if (spur_node_index != 0) spur_node->removeLinkedNode( last_path_ptr->at(spur_node_index-1) );
+
+      vector<Node*> tmp_path;
+    	Dijkstra( nodes, &tmp_path, spur_node, end_node );
+
+      // if the end node has a distance of infinity, it means we couldn't find a path
+      if ( end_node->getDistanceFromStart() != numeric_limits<double>::infinity() )
+      {
+        paths->push_back(new vector<Node*>);
+
+        // set the current path as the previous path up to the spur
+        for (vector<Node*>::iterator node_it = last_path_ptr->begin() ; node_it != last_path_ptr->end(); ++node_it)
+        {
+          if (*node_it == spur_node) break;
+          paths->back()->push_back(*node_it);
+        }
+        // add the new path found
+        for (vector<Node*>::iterator node_it = tmp_path.begin() ; node_it != tmp_path.end(); ++node_it)
+          paths->back()->push_back(*node_it);
+
+        reset_nodes(nodes);
+      }
+    }
+    else break;
   }
   restore_all_links(nodes);
 }

@@ -665,6 +665,21 @@ SWIGEXPORT jlong JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_Nod
 }
 
 
+SWIGEXPORT jint JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_Node_1getNumberOfLinkedNodes(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  Node *arg1 = (Node *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(Node **)&jarg1; 
+  result = (int)(arg1)->getNumberOfLinkedNodes();
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jboolean JNICALL Java_com_google_maps_android_utils_demo_NodeWrapJNI_Node_1hasLinkedNodes(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jboolean jresult = 0 ;
   Node *arg1 = (Node *) 0 ;

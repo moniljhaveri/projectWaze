@@ -35,6 +35,7 @@ public class NodeWrapJNI {
   public final static native double Node_getDistanceTo__SWIG_0(long jarg1, Node jarg1_, long jarg2, Node jarg2_);
   public final static native double Node_getDistanceTo__SWIG_1(long jarg1, Node jarg1_);
   public final static native long Node_getLinkedNodes(long jarg1, Node jarg1_);
+  public final static native int Node_getNumberOfLinkedNodes(long jarg1, Node jarg1_);
   public final static native boolean Node_hasLinkedNodes(long jarg1, Node jarg1_);
   public final static native void Node_setID__SWIG_0(long jarg1, Node jarg1_, int jarg2);
   public final static native void Node_setID__SWIG_1(long jarg1, Node jarg1_);

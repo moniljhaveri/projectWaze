@@ -165,6 +165,10 @@ public class Node {
     return new LinkedNodes(NodeWrapJNI.Node_getLinkedNodes(swigCPtr, this), true);
   }
 
+  public int getNumberOfLinkedNodes() {
+    return NodeWrapJNI.Node_getNumberOfLinkedNodes(swigCPtr, this);
+  }
+
   public boolean hasLinkedNodes() {
     return NodeWrapJNI.Node_hasLinkedNodes(swigCPtr, this);
   }
